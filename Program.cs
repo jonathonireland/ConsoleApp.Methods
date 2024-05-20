@@ -26,23 +26,64 @@ int GetYearDifferenceWithParams(int year)
     return yearDifference;
 }
 
+// methods with optional parameters - parameter is not required... also has a default value
+int GetFutureOrPastYear(int numberOfYears = 0)
+{
+    int pastYear = DateTime.Now.AddYears(numberOfYears).Year;
+    return pastYear;
+}
 
 
+// methods with nullable parameters and optional parameters
+void PrintNameNullableParam(string? name, int? count = 0)
+{
+    // if name is null use default name,
+    // if (string.IsNullOrEmpty(name))
+    // {
+    //    name = "Default Name";
+    // }
 
-// methods with optional parameters
+    name ??= "Default Name";
+    
+    // if count is null than count is 1
+    // if (!count.HasValue)
+    // {
+    //     count = 1;
+    // }
+    count ??= 1;
 
-// methods with nullable parameters
+
+    for (int i = 0; i < count; i++)
+    {
+        Console.WriteLine(name);
+    }
+    
+}
 
 /* Function Calls */
-PrintName();
-Console.WriteLine("Five Years Ago: " + GetFiveYearsAgo());
-PrintNameWithParams("Dynamic Name");
+// PrintName();
+// Console.WriteLine("Five Years Ago: " + GetFiveYearsAgo());
+// PrintNameWithParams("Dynamic Name");
 
-Console.WriteLine("Enter Your Name: ");
-string name1 = Console.ReadLine();
-PrintNameWithParams(name1);
+// Console.WriteLine("Enter Your Name: ");
+// string name1 = Console.ReadLine();
+// PrintNameWithParams(name1);
 
-Console.WriteLine("Enter A Year: ");
-int pastYear = Convert.ToInt32(Console.ReadLine());
-int yearsAgo = GetYearDifferenceWithParams(pastYear);
-Console.WriteLine("This was " + yearsAgo + "years ago");
+// Console.WriteLine("Enter A Year: ");
+// int pastYear = Convert.ToInt32(Console.ReadLine());
+// int yearsAgo = GetYearDifferenceWithParams(pastYear);
+// Console.WriteLine("This was " + yearsAgo + "years ago");
+
+// Console.WriteLine("Enter number of year in the future or past");
+// int numberOfYears = Convert.ToInt32(Console.ReadLine());
+
+// var pastYear1 = GetFutureOrPastYear();
+// Console.WriteLine("The year is " + pastYear1);
+
+// var pastYear2 = GetFutureOrPastYear(numberOfYears);
+// Console.WriteLine("The year is: " + pastYear2);
+
+PrintNameNullableParam(null, null);
+
+PrintNameNullableParam("Chester", 5);
+
